@@ -1,0 +1,5 @@
+load STM32H563RGTx
+project name STM32CubeMX
+project toolchain "MDK-ARM V5"
+project path "D:\!moje\Projekti\HAM-Nano-Eth-RotaCTRL\SW\NERC_uv\STM32CubeMX\Target 1"
+SetCopyLibrary "copy only"
