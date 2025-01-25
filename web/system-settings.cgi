@@ -29,25 +29,25 @@ t </head>
 t <body>
 t    <!-- Banner Image -->
 t    <header>
-t        <img src="banner_s54MTB.png" alt="S54MTB Banner" class="banner">
+t        <a href="index.html"><img src="banner_s54MTB.png" alt="S54MTB Banner" class="banner"></a>
 t    </header>
 t    <div class="container">
 t        <h1>System Settings</h1>
 t        <form action="index.html" method="post" name="loginForm">
 t            <div class="form-group">
 t                <label for="username">Username:</label>
-t                <input type="text" id="username" name="username" required>
+c b u <input type="text" id=username name=username  size=16 maxlength=16 value="%s">
 t            </div>
 t            <div class="form-group">
 t                <label for="password">Password:</label>
-t                <input type=password name=password id=password size=16 maxlength=16 value="%s" required>
+c b p <input type=password name=password id=password size=16 maxlength=16 value="%s">
 t            </div>
 t            <div class="form-group">
 t                <label for="password2">Repeat password:</label>
-t                <input type=password name=password2 id=password2 size=16 maxlength=16 value="%s" required>
+c b q <input type=password name=password2 id=password2 size=16 maxlength=16 value="%s">
 t            </div>
 t            <div class="form-group">
-t                <label for="visible">Password:</label>
+t                <label for="visible">Show passwords:</label>
 t                <input type="checkbox" id="visible" onclick="togglePasswordVisibility()"> 
 t            </div>
 t            <button type="submit" class="button" onclick="changeConfirm(this.form)">Change</button>

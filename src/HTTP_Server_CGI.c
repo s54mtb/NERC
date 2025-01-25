@@ -17,6 +17,9 @@
 static uint8_t ip_addr[NET_ADDR_IP6_LEN];
 static char    ip_string[40];
 
+static char username[20];
+static char password1[20];
+
 
 const struct cmd_st cmd_tbl [] =
 {    
@@ -103,6 +106,24 @@ void cmd_IP(char *value, target_ip_t target_ip) {
 }
 
 
+
+void cmd_PWD(char *value, pwd_seetings_t type) {
+	switch (type) {
+		case PWD_USER  : strcpy(username, value); break;
+		case PWD_PASS1 : strcpy(password1, value); break;
+		case PWD_PASS2 : 
+			if (strcmp(password1, value) == 0) { // passwords match
+				strcpy(config.username, username);
+				strcpy(config.password, password1);
+			}
+		break;
+		
+		
+	}
+	
+}
+
+
 static void cmd_proc (uint16_t cmd_id, char *value)
 {
   
@@ -147,17 +168,17 @@ static void cmd_proc (uint16_t cmd_id, char *value)
 //      cmd_N1MM_PORT(value);
 //    break;
 
-//    case CMD_USERNAME:
-//      cmd_USERNAME(value);
-//    break;
+    case CMD_USERNAME:
+      cmd_PWD(value, PWD_USER);
+    break;
 
-//    case CMD_PASSWORD:
-//      cmd_PASSWORD(value);
-//    break;
+    case CMD_PASSWORD:
+      cmd_PWD(value, PWD_PASS1);
+    break;
 
-//    case CMD_PASSWORD2:
-//      cmd_PASSWORD2(value);
-//    break;
+    case CMD_PASSWORD2:
+      cmd_PWD(value, PWD_PASS2);
+    break;
 
 //    case CMD_ANGLE_0:
 //      cmd_ANGLE_0(value);
@@ -299,7 +320,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buf_len, uint32_t *
 		
   switch (env[0]) {
     // Analyze a 'c' script line starting position 2
-    case 'a' :
+    case 'a' : // ----------------------------------------- NETWORK SETTINGS
       
       switch (env[2]) {
 
@@ -371,6 +392,26 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buf_len, uint32_t *
       netIP_ntoa (typ, ip_addr, ip_string, sizeof(ip_string));
       len = (uint32_t)sprintf (buf, &env[4], ip_string);
       break;
+			
+    case 'b' : // ----------------------------------------- SYSTEM SETTINGS
+      
+      switch (env[2]) {
+
+        case 'u':
+          // Username
+          len = (uint32_t)sprintf (buf, &env[4],config.username);
+				  return len;
+          break;
+				
+				case 'p' :
+				case 'q' :
+          len = (uint32_t)sprintf (buf, &env[4],config.password);
+				  return len;
+				  break;
+				
+			}
+
+			
 	}
 
   return (len);

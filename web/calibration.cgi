@@ -35,7 +35,7 @@ t </head>
 t <body>
 t    <!-- Banner Image -->
 t    <header>
-t        <img src="banner_s54MTB.png" alt="S54MTB Banner" class="banner">
+t        <a href="index.html"><img src="banner_s54MTB.png" alt="S54MTB Banner" class="banner"></a>
 t    </header>
 t    <div class="container">
 t        <h1>Calibration</h1>

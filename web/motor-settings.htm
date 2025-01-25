@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Driver Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="index.html">
+            <img src="banner_s54MTB.png" alt="S54MTB Banner" class="banner">
+        </a>
+    </header>
+
+    <!-- Main Container for Form -->
+    <div class="container">
+        <h1>Motor Driver Settings</h1>
+
+        <!-- Driving Method Switch -->
+        <label for="drivingMethodRelays">Drive with Relays:</label>
+        <input type="radio" id="drivingMethodRelays" name="drivingMethod" value="relays" onclick="toggleDrivingMethod()" checked>
+        
+        <label for="drivingMethodHBridge">Drive with H-Bridge:</label>
+        <input type="radio" id="drivingMethodHBridge" name="drivingMethod" value="hbridge" onclick="toggleDrivingMethod()">
+        
+        <br><br>
+
+        <form action="#" method="post">
+            <!-- Group 1: Motor Control with Relays -->
+            <fieldset id="relaysSettings">
+                <legend>Motor Control with Relays</legend>
+
+                <div class="form-group">
+                    <label for="relayType">Relay driving Type:</label>
+                    <select id="relayType" name="relayType" onchange="toggleRelaySettings()">
+                        <option value="1">REL1: Direction / REL2: Power</option>
+                        <option value="2">REL1: Direction 1 / REL2: Direction 2</option>
+                    </select>
+                </div>
+
+                <div id="relaySettings1" style="display:none;">
+                    <h3>Direction/Power settings</h3>
+                    <div class="form-group">
+                        <label for="direction">Direction:</label>
+                        <select id="direction" name="direction">
+                            <option value="cw-ccw">CW/CCW</option>
+                            <option value="ccw-cw">CCW/CW</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="powerRelayInv">Power Relay inverted:</label>
+                        <input type="checkbox" id="powerRelay" name="powerRelayInv">
+                    </div>
+                </div>
+
+                <div id="relaySettings2" style="display:none;">
+                    <h3>Dir1 / Dir2 Settings</h3>
+                    <div class="form-group">
+                        <label for="cwRelay">Relay for CW:</label>
+                        <input type="radio" id="cwRelay" name="directionRelay" value="cw" checked> 1
+                        <input type="radio" id="ccwRelay" name="directionRelay" value="ccw"> 2
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Group 2: Motor Control with H-Bridge -->
+            <fieldset id="hbridgeSettings" style="display:none;">
+                <legend>Motor Control with H-Bridge</legend>
+
+                <div class="form-group">
+                    <label for="acceleration">Ramp-up Acceleration (% of full speed per second):</label>
+                    <input type="number" id="acceleration" name="acceleration" min="0" max="100" value="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="deceleration">Ramp-down Deceleration (% of full speed per second):</label>
+                    <input type="number" id="deceleration" name="deceleration" min="0" max="100" value="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="startSpeed">Initial Speed (% of full speed):</label>
+                    <input type="number" id="startSpeed" name="startSpeed" min="0" max="100" value="20">
+                </div>
+
+                <div class="form-group">
+                    <label for="pwmFrequency">PWM Frequency (Hz):</label>
+                    <input type="number" id="pwmFrequency" name="pwmFrequency" min="5000" max="30000" value="15000">
+                </div>
+
+                <div class="form-group">
+                    <label for="invertOutput">Invert H-Bridge Output:</label>
+                    <input type="checkbox" id="invertOutput" name="invertOutput">
+                </div>
+
+                <div class="form-group">
+                    <label for="nominalCurrent">Nominal Motor Current (A):</label>
+                    <input type="number" id="nominalCurrent" name="nominalCurrent" min="0" step="0.1" max="6.0" value="1.5">
+                </div>
+
+                <div class="form-group">
+                    <label for="minCurrentAlert">Min Current Alert (% of nominal current):</label>
+                    <input type="number" id="minCurrentAlert" name="minCurrentAlert" min="0" max="100" value="20">
+                </div>
+
+                <div class="form-group">
+                    <label for="maxCurrentAlert">Max Current Alert (% of nominal current):</label>
+                    <input type="number" id="maxCurrentAlert" name="maxCurrentAlert" min="100" max="200" value="150">
+                </div>
+            </fieldset>
+
+            <br><br>
+
+            <input type="submit" value="Save Settings">
+        </form>
+    </div>
+
+    <script>
+        // Function to toggle the visibility of relay and H-bridge settings based on the selected driving method
+        function toggleDrivingMethod() {
+            const relaysSettings = document.getElementById("relaysSettings");
+            const hbridgeSettings = document.getElementById("hbridgeSettings");
+
+            if (document.getElementById("drivingMethodRelays").checked) {
+                relaysSettings.style.display = "block";
+                hbridgeSettings.style.display = "none";
+            } else {
+                relaysSettings.style.display = "none";
+                hbridgeSettings.style.display = "block";
+            }
+        }
+
+        // Function to toggle the relay settings based on the selected relay type
+        function toggleRelaySettings() {
+            var relayType = document.getElementById("relayType").value;
+            if (relayType === "1") {
+                document.getElementById("relaySettings1").style.display = "block";
+                document.getElementById("relaySettings2").style.display = "none";
+            } else if (relayType === "2") {
+                document.getElementById("relaySettings1").style.display = "none";
+                document.getElementById("relaySettings2").style.display = "block";
+            }
+        }
+
+        // Initialize the form with the default selected driving method (relays)
+        window.onload = function() {
+            toggleDrivingMethod();
+        };
+    </script>
+</body>
+</html>

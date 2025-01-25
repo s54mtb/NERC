@@ -58,6 +58,9 @@ PCD_HandleTypeDef hpcd_USB_DRD_FS;
 
 /* USER CODE BEGIN PV */
 extern void rtx_init (void);
+// testing -----------------------------------------------------------------
+extern void test_flash(void);
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -116,6 +119,7 @@ int main(void)
   MX_TIM3_Init();
   MX_FLASH_Init();
   /* USER CODE BEGIN 2 */
+		
 	rtx_init();
   /* USER CODE END 2 */
 

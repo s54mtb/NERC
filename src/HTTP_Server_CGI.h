@@ -37,6 +37,16 @@ typedef enum
 	IP_N1MM
 } target_ip_t;
 
+
+typedef enum 
+{
+	PWD_USER, 
+	PWD_PASS1,
+	PWD_PASS2
+} pwd_seetings_t;
+
+
+
 struct cmd_st
 {
 const char *cmdstr;
@@ -53,9 +63,7 @@ void cmd_DNS2(char *value);
 void cmd_HOSTNAME(char *value);
 void cmd_N1MM_IP(char *value);
 void cmd_N1MM_PORT(char *value);
-void cmd_USERNAME(char *value);
-void cmd_PASSWORD(char *value);
-void cmd_PASSWORD2(char *value);
+void cmd_PWD(char *value, pwd_seetings_t type);
 void cmd_ANGLE_0(char *value);
 void cmd_ANGLE_1(char *value);
 void cmd_ANGLE_2(char *value);

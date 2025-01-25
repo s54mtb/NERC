@@ -419,6 +419,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\config.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_io.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\flash_io.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -488,6 +493,16 @@
               <FileName>calibration.cgi</FileName>
               <FileType>9</FileType>
               <FilePath>.\web\calibration.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>motor-settings.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\web\motor-settings.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>motor-settings.htm</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\web\motor-settings.htm</FilePath>
             </File>
           </Files>
         </Group>
