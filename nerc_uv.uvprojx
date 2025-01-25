@@ -504,6 +504,16 @@
               <FileType>9</FileType>
               <FilePath>.\web\motor-settings.htm</FilePath>
             </File>
+            <File>
+              <FileName>manual-operation.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\web\manual-operation.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>status.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\web\status.cgi</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
